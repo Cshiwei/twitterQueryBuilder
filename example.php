@@ -12,9 +12,9 @@ $twBuilder = new TwitterQueryBuilder();
 
 //get exacat word
 $word = "apple banana grape";
-$twBuilder->setExactWord($word)
+/*$twBuilder->setExactWord($word)
           ->buildQuery();
-$query = $twBuilder->getQuery();
+$query = $twBuilder->getQuery();*/
 //you will get ?q="apple banana grape"
 
 $twBuilder->setAllWord($word);
