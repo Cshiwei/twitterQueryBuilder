@@ -10,4 +10,13 @@ include 'TwitterQueryBuilder.php';
 
 $twBuilder = new TwitterQueryBuilder();
 
-//
+//get exacat word
+$word = "apple banana grape";
+
+$twBuilder->setExactWord($word)
+          ->buildQuery();
+
+$query = $twBuilder->getQuery();
+
+echo $query;
+
