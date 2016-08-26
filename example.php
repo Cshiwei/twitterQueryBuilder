@@ -67,9 +67,12 @@ $register = $twBuilder->getType();
  */
 
 $register['orWord'] ='Peach OR plum';
-var_dump($register);
-$twBuilder->buildQuery($register);
-$query = $twBuilder->getQuery();
+//var_dump($register);
+//$twBuilder->buildQuery('111111');
+$b = array(
+  1,2,3
+);
+$query = $twBuilder->getQuery($b);
 
 echo $query;
 
