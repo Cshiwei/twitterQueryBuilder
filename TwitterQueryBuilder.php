@@ -337,8 +337,10 @@ class TwitterQueryBuilder
      * @param $register
      * @return string
      */
-    public function buildQuery(array $register=array())
+    public function buildQuery($register)
     {
+        var_dump($register);
+        die();
         $query = '';
         $register = !empty($register) ? $register : $this->type;
 
@@ -385,7 +387,7 @@ class TwitterQueryBuilder
      */
     public function getQuery()
     {
-        $query = $this->buildQuery();
+        $query = $this->buildQuery(array());
         return $query;
     }
 
