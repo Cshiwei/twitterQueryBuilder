@@ -327,6 +327,7 @@ class TwitterQueryBuilder
             }
         }
 
+        $this->query = '';
         $this->type = array();
     }
 
@@ -334,20 +335,25 @@ class TwitterQueryBuilder
      * if an incoming register array is passed, the query is split by the parameter.
      * do not recommend this, should be in accordance with the official twitter format, otherwise there will be difficult to predict the error
      * @param $register
+     * @return string
      */
     public function buildQuery(array $register=array())
     {
-        $register =!empty($register) ? $register :$this->type;
+        $query = '';
+        $register = !empty($register) ? $register : $this->type;
 
         foreach($register as $key=>$val)
         {
-            $this->query .= ' '.$val;
+            $query .= ' '.$val;
         }
 
-        $this->query =trim($this->query);
+        $query =trim($query);
 
         if($this->needQ)
-        $this->query = '?q='.$this->query;
+        $query = '?q='.$query;
+
+        $this->init();
+        return $query;
     }
 
     /**
@@ -379,12 +385,8 @@ class TwitterQueryBuilder
      */
     public function getQuery()
     {
-        if($this->query == '')
-        {
-            $this->buildQuery();
-        }
-
-        return $this->query;
+        $query = $this->buildQuery();
+        return $query;
     }
 
     /**
