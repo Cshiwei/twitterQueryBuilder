@@ -39,7 +39,7 @@ $query = $twBuilder->setOrWord($word)
 
 /**
  * combination
- *
+ *?q=apple OR banana OR grade since:2016-08-26 until:2016-08-26
  */
 
 $word = array(
@@ -51,31 +51,20 @@ $twBuilder->setOrWord($word)
           ->setSince($since)
           ->setUntil($until);
 
-$register = $twBuilder->getType();
+$query = $twBuilder->getQuery();
+
 
 /**
- *  $register  Key words have been registered
- *  You can change it and pass it in as a parameter for builderQuery.
- *  array(3) {
- *       'orWord' =>
- *       string(24) "apple OR banana OR grade"
- *       'since' =>
- *      string(16) "since:2016-08-26"
- *       'until' =>
- *       string(16) "until:2016-08-26"
- *   }
+ * mood Save by array
+ * ?q=:) :( ?
  */
-
-$register['orWord'] ='Peach OR plum';
-//var_dump($register);
-//$twBuilder->buildQuery('111111');
-$b = array(
-  1,2,3
+$otherWord = array(
+  'active','negative','question'
 );
-$query = $twBuilder->getQuery($b);
+$query = $twBuilder->setOtherWord($otherWord)
+                   ->getQuery();
 
 echo $query;
-
 
 
 

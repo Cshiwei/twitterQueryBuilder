@@ -381,14 +381,16 @@ class TwitterQueryBuilder
     }
 
     /**
-     * @param $item
      * @return mixed
+     * @internal param $item
      */
-    public function getQuery($item)
+    public function getQuery()
     {
-        var_dump($item);
-        die();
-        $query = $this->buildQuery(array());
+        if($this->query == '')
+        {
+            $query = $this->buildQuery(array());
+        }
+
         return $query;
     }
 
