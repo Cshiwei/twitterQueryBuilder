@@ -17,7 +17,7 @@ $twBuilder->setExactWord($word)
 $query = $twBuilder->getQuery();
 //you will get ?q="apple banana grape"
 
-$twBuilder->setOrWord($word);
+$twBuilder->setAllWord($word);
 $query = $twBuilder->getQuery();
 echo $query;
 
