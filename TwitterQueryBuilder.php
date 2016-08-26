@@ -5,92 +5,96 @@
  * Date: 2016/8/24
  * Time: 16:57
  * 本系统模仿twitter的高级搜索功能拼接查询字符串
+ * The system to imitate the twitter search function of the advanced query string
  * 参考地址 https://twitter.com/search-advanced
+ * Reference :  https://twitter.com/search-advanced
  */
 class TwitterQueryBuilder
 {
-    /**最终生成的查询语句
+    /**
+     * Final query statement
      * @var string
      */
     private $query ='';
 
     /**
-     * 当前已经注册的关键词处理方式
+     * Currently registered methods
      * @var array
      */
     private $type = array();
 
-    /**包含所有词，以空格分离，每个词在文章中可以不紧邻
+    /**Contains all the words, separated by spaces, each word in the article can not be close to
      * @var string
      */
     private $allWord ='';
 
-    /**确切的短语，将词作为整体，不可分割
+    /**The exact phrase, the word as a whole, can not be separated
      * @var string
      */
     private $exactWord ='';
 
-    /**以空格分离，文章包含任意词语即可
+    /**Separated by spaces, the article contains any words can be
      * @var string
      */
     private $orWord ='';
 
-    /**以空格分割 文章中不可包含这些词语
+    /**The space is not included in the article can not contain these words
      * @var string
      */
     private $outWord = '';
 
-    /**多个话题以空格分离 以or连接
+    /**Multiple topics are separated by spaces with or connections
      * @var string
      */
     private $topicWord = '';
-    /**文章上传的起始时间
+    
+    /**Starting time of the article
      * @var string
      */
     private $since ='';
 
-    /**文章上传的终止时间
+    /**The termination time of the article
      * @var string
      */
     private $until ='';
 
-    /**语言 只能选一个
+    /**Language can only choose one
      * @var string
      */
     private $lang = '';
 
-    /**来自这些账号 以空格分离 多个账号以or连接
+    /**From these accounts to separate the number of spaces to or connections
      * @var string
      */
     private $fromWord = '';
 
-    /**发往这些帐号的文章
+    /**Articles sent to these accounts
      * @var string
      */
     private $toWord = '';
 
-    /**文中提到这些帐号 以空格分离 OR连接
+    /**In the text mentioned these accounts with spaces to separate OR connection
      * @var string
      */
     private $mentionWord = '';
 
-    /**在该位置附近
+    /**Near the position
      * @var string
      */
     private $placeWord = '';
 
-    /**其他栏目下的选项
+    /**Options under other columns
      * @var string
      */
     private $otherWord = '';
 
 
-    /**resetWord方法里用来记录最终结果
+    /**The resetWord method is used to record the final results
      * @var string
      */
     private $resetRes = '';
 
-    /**配置数组包含一些对应关系
+    /**The array contains some corresponding relationships
      * @var array
      */
     private $config=array(
@@ -100,7 +104,7 @@ class TwitterQueryBuilder
         'retweets'  =>'include:retweets',
     );
 
-    /**是否需要 拼接 ?q=
+    /**Do you need to splice q=?
      * @var bool
      */
     private $needQ = true;
@@ -142,7 +146,7 @@ class TwitterQueryBuilder
     }
 
     /**
-     * 排除这些单词  以空格分离
+     * Exclude these words by spaces
      * @param string $outWord
      * @return $this
      */
@@ -311,7 +315,7 @@ class TwitterQueryBuilder
     }
 
     /**
-     * 重置所有选项
+     * reset all settings
      */
     public function init()
     {
@@ -326,9 +330,9 @@ class TwitterQueryBuilder
         $this->type = array();
     }
 
-    /**可以自定义注册数组，
-     * 如果传入注册数组，则按照参数对query进行拼接
-     * 不建议如此，应按照twitter官方规定格式，否则会有难以预测的错误
+    /**Can customize the registration array,
+     * if an incoming register array is passed, the query is split by the parameter.
+     * do not recommend this, should be in accordance with the official twitter format, otherwise there will be difficult to predict the error
      * @param $register
      */
     public function buildQuery(array $register=array())
